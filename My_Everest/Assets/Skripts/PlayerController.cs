@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public FixedJoystick Joystick;
     public float MoveSpeed = 1;
 
     private Animator animator;
@@ -12,35 +13,14 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        InputManager.MoveUpEvent.Add(() =>
-            {
-                animator.SetInteger("MoveType", 1);
-                Move(0, 1);
-            });
-        InputManager.MoveRightEvent.Add(() =>
-            {
-                animator.SetInteger("MoveType", 2);
-                Move(1, 0);
-            });
-        InputManager.MoveDownEvent.Add(() =>
-            {
-                animator.SetInteger("MoveType", 3);
-                Move(0, -1);
-            });
-        InputManager.MoveLeftEvent.Add(() =>
-            {
-                animator.SetInteger("MoveType", 4);
-                Move(-1, 0);
-            });
-        InputManager.StayEvent.Add(() =>
-        {
-            animator.SetInteger("MoveType", 0);
-        });
     }
 
     void Update()
     {
-
+        var horizontal = Joystick.Horizontal;
+        var vertical = Joystick.Vertical;
+        Move(horizontal, vertical);
+        animator.SetInteger("MoveType", GetMoveAnimation(horizontal, vertical));
     }
 
     private void Move(float x, float y)
@@ -51,5 +31,15 @@ public class PlayerController : MonoBehaviour
             y * deltaTime * MoveSpeed,
             0
         );
+    }
+
+    private int GetMoveAnimation(float x, float y)
+    {
+        if (x == 0 && y == 0)
+            return 0;
+        if (Mathf.Abs(x) > Mathf.Abs(y))
+            return x > 0 ? 2 : 4;
+        else
+            return y > 0 ? 1 : 3;
     }
 }
