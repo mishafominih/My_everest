@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class UsingResources : MonoBehaviour
+public class Beepka : MonoBehaviour
 {
     [SerializeField] private GameObject resourcePrefab;
     [SerializeField] private GameObject objectAfterMinePrefab;
@@ -11,6 +12,7 @@ public class UsingResources : MonoBehaviour
     [SerializeField] private float timeToMine;
     [SerializeField] private float triggerRadius;
 
+    public float TriggerRadius => triggerRadius;
     public bool CanMine { get; set; }
     private float _timeToMine;
     private Coroutine miningRoutine;
@@ -34,21 +36,8 @@ public class UsingResources : MonoBehaviour
     
     private void Start()
     {
-        _timeToMine = timeToMine;
-    }
-    
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            CanMine = true;
-            Debug.Log(CanMine.ToString());
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
         CanMine = false;
+        _timeToMine = timeToMine;
     }
     
     private void StartMining()

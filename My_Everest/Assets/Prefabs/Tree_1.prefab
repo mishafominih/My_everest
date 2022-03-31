@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1539364130030725575}
   - component: {fileID: 1539364130030725574}
   - component: {fileID: 1539364130030725568}
-  - component: {fileID: 1539364130030725569}
   - component: {fileID: 1539364130030725572}
+  - component: {fileID: 6553667003633251773}
   m_Layer: 0
   m_Name: Tree_1
   m_TagString: Untagged
@@ -177,23 +177,7 @@ MonoBehaviour:
   anim: {fileID: 1539364131252943443}
   resourcesAmount: 3
   timeToMine: 2
-  triggerRadius: 1.690679
---- !u!58 &1539364130030725569
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1539364130030725595}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.037996173, y: 0.6781246}
-  serializedVersion: 2
-  m_Radius: 1.6906794
+  triggerRadius: 7.7
 --- !u!58 &1539364130030725572
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -210,6 +194,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.01}
   serializedVersion: 2
   m_Radius: 0.23
+--- !u!58 &6553667003633251773
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539364130030725595}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0064043403, y: 0.79660976}
+  serializedVersion: 2
+  m_Radius: 0.7157692
 --- !u!1 &1539364131252943443
 GameObject:
   m_ObjectHideFlags: 0
