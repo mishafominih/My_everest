@@ -4,21 +4,38 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ObjectsInteractor : MonoBehaviour
+class ObjectsInteractor : MonoBehaviour
 {
-    private List<Beepka> beepke;
+    private  List<Beepka> beepke;
+    private static ObjectsInteractor instance;
 
     private void Start()
     {
+        instance = this;
         beepke = FindObjectsOfType<Beepka>().ToList();
         var distance = Vector3.Distance(this.transform.position, beepke[0].transform.position);
         Debug.Log("Всего бипок" + beepke.Count + "\n Дистанция до первого обьекта" + distance);
-        
     }
 
+    public void AddBeepka(Beepka beepka)
+    {
+        beepke.Add(beepka);
+    }
+    public void RemoveBeepka(Beepka beepka)
+    {
+        if (beepke != null)
+        {
+            beepke.Remove(beepka);
+        }
+    }
+    public static ObjectsInteractor GetInstance()
+    {
+        if (instance == null)
+            instance = new ObjectsInteractor();
+        return instance;
+    }
     private void Update()
     {
-        beepke = FindObjectsOfType<Beepka>().ToList();
         foreach (var beepka in beepke)
         {
             var distance = Vector3.Distance(this.transform.localPosition, beepka.transform.localPosition);

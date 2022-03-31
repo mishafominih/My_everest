@@ -11,7 +11,6 @@ public class Beepka : MonoBehaviour
     [SerializeField] private int resourcesAmount;
     [SerializeField] private float timeToMine;
     [SerializeField] private float triggerRadius;
-
     public float TriggerRadius => triggerRadius;
     public bool CanMine { get; set; }
     private float _timeToMine;
@@ -65,12 +64,18 @@ public class Beepka : MonoBehaviour
             yield return null;
         }
         SpawnResources();
-
-        if (objectAfterMinePrefab != null)
-            Instantiate(objectAfterMinePrefab, transform.position, Quaternion.identity);
-        
         Destroy(this.gameObject);
         miningRoutine = null;
+
+        if (objectAfterMinePrefab != null)
+        {
+            Instantiate(objectAfterMinePrefab, transform.position, Quaternion.identity);
+            // Добавить новый обьект в список бипок в ObjectsInteractor
+        }
+
+
+        ObjectsInteractor.GetInstance().RemoveBeepka(this);
+        
         Debug.Log("Срубил");
     }
 

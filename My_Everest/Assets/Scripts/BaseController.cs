@@ -7,7 +7,7 @@ public class BaseController : MonoBehaviour
     public float MoveSpeed = 1;
 
     private Animator animator;
-
+    
     protected void Start()
     {
         animator = GetComponent<Animator>();
