@@ -57,19 +57,11 @@ public class BearController : BaseController
     {
         var stayChanse = Random.Range(0.0f, 1);
         if (stayChanse < StayChance) return 0;
-        var one = getChanceDirection(start, end);
-        var two = getChanceDirection(end, start);
-        if(one == two)
-        {
-            return Random.Range(0, 2) > 1 ? 1 : -1;
-        }
-        var min = Mathf.Min(one, two);
-        var max = Mathf.Max(one, two);
-        max += (max - min); // Увеличим вероятность пойти в центр
-        var value = Random.Range(0, min + max);
-        if (value > max)
-            return one > two ? 1 : -1;
-        return one > two ? -1 : 1;
+
+        var dir = getChanceDirection(start, end);
+        var neutral = 1 - dir; // От 0 до 2
+        var chance = Random.Range(0, 2);
+        return chance < neutral ? 1 : -1;
     }
 
     /// <summary>
@@ -80,7 +72,12 @@ public class BearController : BaseController
     /// <returns></returns> Вероятность
     private float getChanceDirection(float start, float end)
     {
-        var chance = Mathf.Min(start - end, Radius) / Radius;
-        return Mathf.Min(chance + DeltaChance, 1); // Если незначительно отошел в каком то направлении, оставляем шансы равными.
+        var len = Mathf.Abs(end - start);
+        if(len < Radius * DeltaChance) // Если отошли не далеко
+        {
+            return 0;  // То без разницы куда пойдем
+        }
+        var chance = 1 - ((Radius * DeltaChance) / len);
+        return end > start ? chance : -chance;
     }
 }
