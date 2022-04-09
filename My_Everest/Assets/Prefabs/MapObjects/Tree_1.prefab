@@ -177,7 +177,7 @@ MonoBehaviour:
   anim: {fileID: 1539364131252943443}
   resourcesAmount: 3
   timeToMine: 2
-  triggerRadius: 7.7
+  triggerRadius: 12
 --- !u!58 &1539364130030725572
 CircleCollider2D:
   m_ObjectHideFlags: 0
