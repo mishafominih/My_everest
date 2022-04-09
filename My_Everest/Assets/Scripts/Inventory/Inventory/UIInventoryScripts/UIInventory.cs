@@ -6,15 +6,15 @@ using UnityEngine;
 // В этом компоненте указывается количество слотов в инвенторе
 public class UIInventory : MonoBehaviour
 {
-    [SerializeField] private GameObject pref;
+    [SerializeField] private Canvas inventoryCanvas;
     public InventoryWithSlots Inventory => controller.Inventory;
     private UIInventoryController controller;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            controller.Inventory.TryToAdd(this, pref.GetComponent<ItemPrefab>().Item);
+            inventoryCanvas.enabled = !inventoryCanvas.enabled;
         }
     }
 
