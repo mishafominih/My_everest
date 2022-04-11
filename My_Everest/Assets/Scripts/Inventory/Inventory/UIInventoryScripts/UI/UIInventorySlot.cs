@@ -38,6 +38,5 @@ public class UIInventorySlot : MonoBehaviour, IDropHandler
             uiInventoryItem.Refresh(Slot);
     }
 
-
     
 }

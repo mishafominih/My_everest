@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UIItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    [SerializeField]private Image removeZone;
+    
     private RectTransform _rectTransform;
     private Canvas _mainCanvas;
     private CanvasGroup _canvasGroup;
@@ -23,6 +26,7 @@ public class UIItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHa
         var slotTransform = _rectTransform.parent;
         slotTransform.SetAsLastSibling();
         _canvasGroup.blocksRaycasts = false;
+        removeZone.raycastTarget = true;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -34,5 +38,6 @@ public class UIItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHa
     {
         transform.localPosition = Vector3.zero;
         _canvasGroup.blocksRaycasts = true;
+        removeZone.raycastTarget = false;
     }
 }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class InventoryWithSlots: IInventory
+public class InventoryWithSlots: IInventory 
 {
     public event Action<object, IInventoryItem, int> OnInventoryItemAddedEvent;
     public event Action<object, Type, int> OnInventoryItemRemovedEvent;
+    public event Action<object, IInventoryItem> OnInventoryItemDropEvent;
     public event Action<object> OnInventoryStateChangeEvent;
     public int Capacity { get; set; }
     public bool IsFull => _slots.All(slot => slot.IsFull);
@@ -89,7 +90,7 @@ public class InventoryWithSlots: IInventory
         if (emptySlot != null)
             return TryToAddToSlot(sender, emptySlot, item);
         
-        Debug.Log($"Нельзя добавить предмет, тк нет места\nItemType [{item.Type}] Amount = {item.State.Amount}");
+        //Debug.Log($"Нельзя добавить предмет, тк нет места\nItemType [{item.Type}] Amount = {item.State.Amount}");
         return false;
     }
 
@@ -105,7 +106,7 @@ public class InventoryWithSlots: IInventory
             slot.SetItem(clonedItem);
         else
             slot.Item.State.Amount += amountToAdd;
-        Debug.Log($"Предмет добавлен в инвентарь\nItemType [{item.Type}] Amount = {amountToAdd}");
+        //Debug.Log($"Предмет добавлен в инвентарь\nItemType [{item.Type}] Amount = {amountToAdd}");
         OnInventoryItemAddedEvent?.Invoke(sender,item, amountToAdd);
         OnInventoryStateChangeEvent?.Invoke(sender);
 
@@ -140,12 +141,20 @@ public class InventoryWithSlots: IInventory
             var amountRemoved = slot.Amount;
             amountToRemove -= slot.Amount;
             slot.Clear(); 
-            Debug.Log($"Предмет удален из инвентаря.\nItemType - [{itemType}] Amount = {amountRemoved}");
+            //Debug.Log($"Предмет удален из инвентаря.\nItemType - [{itemType}] Amount = {amountRemoved}");
             OnInventoryItemRemovedEvent?.Invoke(sender, itemType, amountRemoved);
             OnInventoryStateChangeEvent?.Invoke(sender);
         }
     }
 
+    public void RemoveItemFromSlot(object sender, IInventorySlot slotToDrop, IInventoryItem item)
+    {
+        if (slotToDrop == null || slotToDrop.IsEmpty)
+            return;
+        OnInventoryItemDropEvent?.Invoke(sender,item.Clone());
+        slotToDrop.Clear();
+        OnInventoryStateChangeEvent?.Invoke(sender);
+    }
     private void Swap(object sender, IInventorySlot fromSlot, IInventorySlot toSlot)
     {
         var toSlotItem = toSlot.Item.Clone();
@@ -160,8 +169,8 @@ public class InventoryWithSlots: IInventory
     {
         if (fromSlot.IsEmpty)
             return;
-        if(toSlot.IsFull)
-            return;
+        //if(toSlot.IsFull)
+         //   return;
         if (fromSlot==toSlot)
             return;
         

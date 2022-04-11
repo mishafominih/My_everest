@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 public class Item : IInventoryItem
 {
@@ -13,6 +14,7 @@ public class Item : IInventoryItem
     
     public IInventoryItem Clone()
     {
+
         var clonedDiamond = new Item(Info)
         {
             State =
@@ -22,4 +24,5 @@ public class Item : IInventoryItem
         };
         return clonedDiamond;
     }
+    
 }

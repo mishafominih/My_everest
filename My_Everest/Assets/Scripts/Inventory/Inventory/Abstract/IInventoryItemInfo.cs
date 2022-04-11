@@ -9,5 +9,4 @@ public interface IInventoryItemInfo
     string Description { get; }
     int MaxItemInInventorySlot { get; }         // Максимальное число предметов в слоте. Необязательное св-во
     Sprite SpriteIcon { get; }
-    
 }
