@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -23,6 +24,23 @@ public class UIInventory : MonoBehaviour
         {
 
         }
+    }
+
+    public Dictionary<Resource, int> GetAllItems()
+    {
+        var res = new Dictionary<Resource, int>();
+        foreach (var slot in controller.Inventory.GetAllSlots())
+        {
+            if (!slot.IsEmpty) {
+                var resource_type = slot.Item.Info.ResourceType;
+                var count = slot.Amount;
+                if (res.Keys.Contains(resource_type))
+                    res[resource_type] += count;
+                else
+                    res[resource_type] = count;
+            }
+        }
+        return res;
     }
 
     private void OnTriggerStay2D(Collider2D other)

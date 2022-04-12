@@ -9,9 +9,11 @@ public class InventoryItemInfo : ScriptableObject, IInventoryItemInfo
     [SerializeField] private string description;
     [SerializeField] private int maxItemInInventorySlot;
     [SerializeField] private Sprite spriteIcon;
+    [SerializeField] private Resource resourceType;
     public string Id => id;
     public string Title => title;
     public string Description => description;
     public int MaxItemInInventorySlot => maxItemInInventorySlot;
     public Sprite SpriteIcon => spriteIcon;
+    public Resource ResourceType => resourceType;
 }

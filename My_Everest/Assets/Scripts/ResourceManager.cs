@@ -4,15 +4,15 @@ using UnityEngine;
 
 public enum Resource
 {
-    Wood, Stone, Gold
+    Log, Stone, Gold
 }
 
-public class ResourceManager
+public static class ResourceManager
 {
-    public Dictionary<Resource, int> GetInventory()
+    public static Dictionary<Resource, int> GetInventory()
     {
         var inventory = new Dictionary<Resource, int>();
-        var resources = new List<Resource> { Resource.Wood, Resource.Stone, Resource.Gold };
+        var resources = new List<Resource> { Resource.Log, Resource.Stone, Resource.Gold };
         foreach(var res in resources)
         {
             var count = GetResource(res);
@@ -21,12 +21,12 @@ public class ResourceManager
         return inventory;
     }
 
-    public int GetResource(Resource res)
+    public static int GetResource(Resource res)
     {
         return PlayerPrefs.GetInt(res.ToString(), 0);
     }
 
-    public void AddResources(Dictionary<Resource, int> inventory)
+    public static void AddResources(Dictionary<Resource, int> inventory)
     {
         foreach(var res in inventory.Keys)
         {
@@ -36,7 +36,7 @@ public class ResourceManager
         }
     }
 
-    public void SaveResource(Resource res, int count)
+    public static void SaveResource(Resource res, int count)
     {
         PlayerPrefs.SetInt(res.ToString(), count);
     }

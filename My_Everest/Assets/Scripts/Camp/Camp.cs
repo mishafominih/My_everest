@@ -9,14 +9,22 @@ public class Camp : MonoBehaviour
     public GameObject Fire;
     public void Exit()
     {
-        Debug.LogError("1");
         Application.Quit();
     }
 
     public void Trip()
     {
-        Debug.LogError("2");
         SceneManager.LoadScene(1);
+    }
+
+    public void Home()
+    {
+        var inventory = GameObject.FindObjectsOfType<UIInventory>();
+        foreach(var inv in inventory)
+        {
+            ResourceManager.AddResources(inv.GetAllItems());
+        }
+        SceneManager.LoadScene(0);
     }
 
     public void Craft()
