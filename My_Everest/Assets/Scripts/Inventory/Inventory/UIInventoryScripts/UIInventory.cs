@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 // В этом компоненте указывается количество слотов в инвенторе
 public class UIInventory : MonoBehaviour
 {
-    [SerializeField] private Canvas inventoryCanvas;
+    [SerializeField] private GameObject inventoryCanvas;
     [SerializeField] private List<GameObject> prefabs;
+    [SerializeField]private float colSphereRadius;
     public InventoryWithSlots Inventory => controller.Inventory;
     private UIInventoryController controller;
     private void Start()
@@ -18,12 +20,10 @@ public class UIInventory : MonoBehaviour
         controller = new UIInventoryController(uiSlots, 5);
         Inventory.OnInventoryItemDropEvent += DropItem;
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
 
-        }
+    public void OpenInventory()
+    {
+        inventoryCanvas.SetActive(!inventoryCanvas.activeSelf);
     }
 
     public Dictionary<Resource, int> GetAllItems()
@@ -43,25 +43,50 @@ public class UIInventory : MonoBehaviour
         return res;
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    public void TryToPickUp()
     {
-   
-        if (other.CompareTag("Resources"))
+        Collider2D[] colliders;
+        Debug.DrawLine(transform.localPosition, transform.localPosition*6, Color.cyan);
+
+        colliders = Physics2D.OverlapCircleAll(transform.position, colSphereRadius);
+
+        foreach (var collider in colliders)
         {
-            if (controller.Inventory.TryToAdd(this, other.GetComponent<ItemPrefab>().Item))
+            if (collider.CompareTag("Resources"))
             {
-                Debug.Log("подобран предмет");
-                Destroy(other.gameObject);
+                if (controller.Inventory.TryToAdd(this, collider.GetComponent<ItemPrefab>().Item))
+                {
+                    Debug.Log("подобран предмет");
+                    Destroy(collider.gameObject);
+                }
             }
         }
     }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        
+        // if (isBtnPressed)
+        // {
+        //     if (other.CompareTag("Resources"))
+        //     {
+        //         if (controller.Inventory.TryToAdd(this, other.GetComponent<ItemPrefab>().Item))
+        //         {
+        //             Debug.Log("подобран предмет");
+        //             Destroy(other.gameObject);
+        //         }
+        //     }
+        // }
+        
+    }
+    
 
     private void DropItem(object sender, IInventoryItem item)
     {
         var prefab = prefabs.Find((x) => x.name == item.Info.Title);
 
 
-        var itemPrefab =Instantiate(prefab, transform.position + 2.5f*Random.onUnitSphere , Quaternion.identity);
+        var itemPrefab =Instantiate(prefab, transform.position , Quaternion.identity);
         itemPrefab.GetComponent<ItemPrefab>().Item.State.Amount = item.State.Amount;
     }
 }
