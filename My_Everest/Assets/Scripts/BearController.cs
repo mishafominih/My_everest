@@ -8,15 +8,19 @@ public class BearController : BaseController
     public float DeltaChance = 0.5f; // Коэффицент уменьшения вероятности при приближении к краю зоны
     public float StayChance = 0.25f;
     public float TimeSolution = 1.5f; // с интервалом в это время будем принимать решение, куда идти
+    public float PlayerDistance = 5;
+    public float AttackDistace = 1.1f;
 
     private Vector2 startPoint;
     private float timer = 0;
     private Vector2 MoveDirection;
+    private GameObject player;
     protected void Start()
     {
         base.Start();
         startPoint = transform.position;
         MoveDirection = GetMoveDirection();
+        player = GameObject.FindObjectOfType<PlayerController>().gameObject;
     }
 
     /// <summary>
@@ -25,11 +29,24 @@ public class BearController : BaseController
     /// </summary>
     void Update()
     {
-        timer += Time.deltaTime;
-        if(timer > TimeSolution)
+        var playerDist = getDistance(player.transform.position);
+        if (playerDist > PlayerDistance)
         {
-            timer = 0;
-            MoveDirection = GetMoveDirection();
+            timer += Time.deltaTime;
+            if (timer > TimeSolution)
+            {
+                timer = 0;
+                MoveDirection = GetMoveDirection();
+            }
+        }
+        else
+        {
+            var vect = player.transform.position - transform.position;
+            MoveDirection = new Vector2(calcDir(vect.x), calcDir(vect.y));
+            if(playerDist < AttackDistace)
+            {
+                player.GetComponent<Energy>().ChangeEnergy(15f);
+            }
         }
         Move(MoveDirection.x, MoveDirection.y);
     }
@@ -79,5 +96,16 @@ public class BearController : BaseController
         }
         var chance = 1 - ((Radius * DeltaChance) / len);
         return end > start ? chance : -chance;
+    }
+
+    private float getDistance(Vector2 pos)
+    {
+        return Vector2.Distance(pos, transform.position);
+    }
+
+    private int calcDir(float v)
+    {
+        if (v < 0.5f && v > -0.5f) return 0;
+        return v > 0 ? 1 : -1;
     }
 }
