@@ -15,6 +15,7 @@ public class Energy : MonoBehaviour
 
     private void Start()
     {
+        Capacity = PlayerPrefs.GetFloat("Energy", Capacity);
         value = Capacity;
         text = transform
             .GetComponentsInChildren<Text>()

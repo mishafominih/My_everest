@@ -3716,7 +3716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Capacity: 100
-  DeltaEnergy: 0.05
+  DeltaEnergy: 0.18
 --- !u!50 &1760398578
 Rigidbody2D:
   serializedVersion: 4

@@ -45,7 +45,7 @@ public class BearController : BaseController
             MoveDirection = new Vector2(calcDir(vect.x), calcDir(vect.y));
             if(playerDist < AttackDistace)
             {
-                player.GetComponent<Energy>().ChangeEnergy(15f);
+                player.GetComponent<Energy>().ChangeEnergy(3f);
             }
         }
         Move(MoveDirection.x, MoveDirection.y);

@@ -29,7 +29,6 @@ public class Camp : MonoBehaviour
 
     public void Craft()
     {
-        Main.SetActive(false);
-        Fire.SetActive(true);
+        
     }
 }
