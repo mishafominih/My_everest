@@ -18,6 +18,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/InputModules/StandaloneInputModule.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../HazardPerceptionSimulator/HazardPerceptionSimulator/Assets/Scripts/Cards/CardInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.tilemap@1.0.0/Editor/GridPaintPaletteClipboard.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/InputModules/TouchInputModule.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -82,6 +83,9 @@
       <workItem from="1649784343995" duration="857000" />
       <workItem from="1650028576607" duration="3690000" />
       <workItem from="1650039044236" duration="873000" />
+      <workItem from="1650118218481" duration="254000" />
+      <workItem from="1650118521877" duration="2338000" />
+      <workItem from="1650204110696" duration="5661000" />
     </task>
     <servers />
   </component>

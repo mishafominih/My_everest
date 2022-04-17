@@ -116,7 +116,7 @@ MonoBehaviour:
   anim: {fileID: 3292846813622764825}
   resourcesAmount: 3
   timeToMine: 1
-  triggerRadius: 17.3
+  triggerRadius: 68.99
 --- !u!114 &1022982828801207098
 MonoBehaviour:
   m_ObjectHideFlags: 0

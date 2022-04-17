@@ -38,7 +38,7 @@ class ObjectsInteractor : MonoBehaviour
     {
         foreach (var beepka in beepke)
         {
-            var distance = Vector3.Distance(this.transform.localPosition, beepka.transform.localPosition);
+            var distance = Vector2.Distance(this.transform.localPosition, beepka.transform.localPosition);
             if (Math.Round(beepka.TriggerRadius,1) >= Math.Round(distance,1) )
             {
                 beepka.CanMine = true;

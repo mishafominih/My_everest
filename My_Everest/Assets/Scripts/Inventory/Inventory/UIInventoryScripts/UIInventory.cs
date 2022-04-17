@@ -43,50 +43,26 @@ public class UIInventory : MonoBehaviour
         return res;
     }
 
-    public void TryToPickUp()
-    {
-        Collider2D[] colliders;
-        Debug.DrawLine(transform.localPosition, transform.localPosition*6, Color.cyan);
 
-        colliders = Physics2D.OverlapCircleAll(transform.position, colSphereRadius);
-
-        foreach (var collider in colliders)
-        {
-            if (collider.CompareTag("Resources"))
-            {
-                if (controller.Inventory.TryToAdd(this, collider.GetComponent<ItemPrefab>().Item))
-                {
-                    Debug.Log("подобран предмет");
-                    Destroy(collider.gameObject);
-                }
-            }
-        }
-    }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        
-        // if (isBtnPressed)
-        // {
-        //     if (other.CompareTag("Resources"))
-        //     {
-        //         if (controller.Inventory.TryToAdd(this, other.GetComponent<ItemPrefab>().Item))
-        //         {
-        //             Debug.Log("подобран предмет");
-        //             Destroy(other.gameObject);
-        //         }
-        //     }
-        // }
-        
+        if (other.CompareTag("Resources"))
+        {
+            if (controller.Inventory.TryToAdd(this, other.GetComponent<ItemPrefab>().Item))
+            {
+                Debug.Log("подобран предмет");
+                Destroy(other.gameObject);
+            }
+        }
     }
     
 
     private void DropItem(object sender, IInventoryItem item)
     {
         var prefab = prefabs.Find((x) => x.name == item.Info.Title);
-
-
-        var itemPrefab =Instantiate(prefab, transform.position , Quaternion.identity);
+ 
+        var itemPrefab =Instantiate(prefab, transform.position + new Vector3(0f,0.8f,0f)    , Quaternion.identity);
         itemPrefab.GetComponent<ItemPrefab>().Item.State.Amount = item.State.Amount;
     }
 }

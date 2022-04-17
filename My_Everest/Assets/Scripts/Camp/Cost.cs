@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Cost : MonoBehaviour
 {
+    
     private int lavel;
     private Dictionary<int, List<int>> info = new Dictionary<int, List<int>>
     {

@@ -10,8 +10,8 @@ public class Energy : MonoBehaviour
     public float Capacity = 100;
     public float DeltaEnergy = 0.001f;
 
-    private float value;
-    private Text text;
+    protected float value;
+    protected Text text;
 
     private void Start()
     {
@@ -21,9 +21,13 @@ public class Energy : MonoBehaviour
             .GetComponentsInChildren<Text>()
             .Where(x => x.name == "Energy")
             .FirstOrDefault();
+        if (text != null)
+        {
+            text.text = $"Energy: {Mathf.Round(value)}%";
+        }
     }
 
-    public void ChangeEnergy(float delta = 1)
+    public virtual void ChangeEnergy(float delta = 1)
     {
         value -= delta * DeltaEnergy;
         value = Mathf.Min(value, Capacity);

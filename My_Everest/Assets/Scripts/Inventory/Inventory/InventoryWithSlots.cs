@@ -147,7 +147,7 @@ public class InventoryWithSlots: IInventory
         }
     }
 
-    public void RemoveItemFromSlot(object sender, IInventorySlot slotToDrop, IInventoryItem item)
+    public void RemoveItemFromSlot(object sender, IInventorySlot slotToDrop, IInventoryItem item )
     {
         if (slotToDrop == null || slotToDrop.IsEmpty)
             return;
