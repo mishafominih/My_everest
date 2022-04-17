@@ -13,6 +13,11 @@ public class ResourceInfo : MonoBehaviour
         SetResource();
     }
 
+    private void Update()
+    {
+        SetResource();
+    }
+
     public void SetResource()
     {
         var result = "Ресурсы: ";

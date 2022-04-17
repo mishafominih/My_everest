@@ -41,8 +41,8 @@ public class Cost : MonoBehaviour
         if(log >= info[lavel][0] && stone >= info[lavel][1] && gold >= info[lavel][2])
         {
             ResourceManager.SaveResource(Resource.Log, inventory[Resource.Log] - info[lavel][0]);
-            ResourceManager.SaveResource(Resource.Log, inventory[Resource.Stone] - info[lavel][1]);
-            ResourceManager.SaveResource(Resource.Log, inventory[Resource.Gold] - info[lavel][2]);
+            ResourceManager.SaveResource(Resource.Stone, inventory[Resource.Stone] - info[lavel][1]);
+            ResourceManager.SaveResource(Resource.Gold, inventory[Resource.Gold] - info[lavel][2]);
             lavel += 1;
             PlayerPrefs.SetFloat("Energy", PlayerPrefs.GetFloat("Energy", 100) + 50);
             PlayerPrefs.SetInt("EnergyLavel", lavel);
