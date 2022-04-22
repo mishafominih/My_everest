@@ -13,8 +13,15 @@ class ObjectsInteractor : MonoBehaviour
     {
         instance = this;
         beepke = FindObjectsOfType<Beepka>().ToList();
-        var distance = Vector3.Distance(this.transform.position, beepke[0].transform.position);
-        Debug.Log("Всего бипок" + beepke.Count + "\n Дистанция до первого обьекта" + distance);
+        if (beepke == null || beepke.Count==0)
+        {
+            Debug.Log("БИПОК НЕТ НА КАРТЕ");
+        }
+        else
+        {
+            var distance = Vector3.Distance(this.transform.position, beepke[0].transform.position);
+            Debug.Log("Всего бипок" + beepke.Count + "\n Дистанция до первого обьекта" + distance);   
+        }
     }
 
     public void AddBeepka(Beepka beepka)
