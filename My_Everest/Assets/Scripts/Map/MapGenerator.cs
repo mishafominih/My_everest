@@ -23,6 +23,7 @@ public class MapGenerator : MonoBehaviour
 
             map = new TilesEnum[width, height];
             GenerateMap();
+            GenerateSecondFloor();
         }
 
         public TilesEnum this[int x, int y]
@@ -43,6 +44,33 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
+
+        private void GenerateSecondFloor()
+        {
+            var newHeight = Height /Random.Range(2,5);
+            var newWidth = Width / Random.Range(2,5);
+
+            var rh = Random.Range(newWidth+3, Width-1);
+            var lh = Random.Range(newHeight+3, Height-1);
+            
+            Debug.Log(newWidth + " " + lh);
+            for (int i = newWidth; i < rh; i++)
+            {
+                for (int j = newHeight; j < lh; j++)
+                {
+                    if (i==newWidth+1 && j ==newHeight)
+                    {
+                        continue;
+                    }
+                    if (i==newWidth || j ==newHeight || i ==rh-1|| j==lh-1)
+                    {
+                        Debug.Log("lol");
+                        map[i, j] = TilesEnum.Border;
+                    }
+                }
+            }
+
+        }
         private void GenerateMap()
         {
             for (int i = 0; i < Width; i++)
@@ -55,6 +83,7 @@ public class MapGenerator : MonoBehaviour
                     }
                     else
                     {
+                        
                         map[i, j] = TilesEnum.Ground;
                     }
                 }
