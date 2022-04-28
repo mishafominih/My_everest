@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerStay
+  m_Name: DeerUp
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,15 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: cc3c28d4a91b72540849f5f4c6f1e34b, type: 3}
+      value: {fileID: 21300000, guid: 9f1862cef5efe1445a5cd2bf0c3aedbd, type: 3}
+    - time: 0.25
+      value: {fileID: 21300000, guid: 27037dbf7678c624796b53fde81bb7db, type: 3}
+    - time: 0.51666665
+      value: {fileID: 21300000, guid: 7b4287784f519c84191d50ea8840aab5, type: 3}
+    - time: 0.76666665
+      value: {fileID: 21300000, guid: 9e36ea466a6f51b40aa16d1da57eac99, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: 9f1862cef5efe1445a5cd2bf0c3aedbd, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -40,13 +48,17 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: cc3c28d4a91b72540849f5f4c6f1e34b, type: 3}
+    - {fileID: 21300000, guid: 9f1862cef5efe1445a5cd2bf0c3aedbd, type: 3}
+    - {fileID: 21300000, guid: 27037dbf7678c624796b53fde81bb7db, type: 3}
+    - {fileID: 21300000, guid: 7b4287784f519c84191d50ea8840aab5, type: 3}
+    - {fileID: 21300000, guid: 9e36ea466a6f51b40aa16d1da57eac99, type: 3}
+    - {fileID: 21300000, guid: 9f1862cef5efe1445a5cd2bf0c3aedbd, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.016666668
+    m_StopTime: 1.0166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

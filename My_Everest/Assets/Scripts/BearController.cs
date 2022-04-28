@@ -11,10 +11,10 @@ public class BearController : BaseController
     public float PlayerDistance = 5;
     public float AttackDistace = 1.1f;
 
-    private Vector2 startPoint;
-    private float timer = 0;
-    private Vector2 MoveDirection;
-    private GameObject player;
+    protected Vector2 startPoint;
+    protected float timer = 0;
+    protected Vector2 MoveDirection;
+    protected GameObject player;
     protected void Start()
     {
         base.Start();
@@ -55,7 +55,7 @@ public class BearController : BaseController
     /// Получить направление для движение
     /// </summary>
     /// <returns></returns>
-    private Vector2 GetMoveDirection()
+    protected Vector2 GetMoveDirection()
     {
         var pos = transform.position;
         return new Vector2(
@@ -70,7 +70,7 @@ public class BearController : BaseController
     /// <param name="start"></param> Начальная координата
     /// <param name="end"></param> Конечная координата
     /// <returns></returns> 1, 0 или -1
-    private int getMoveDirection(float start, float end)
+    protected int getMoveDirection(float start, float end)
     {
         var stayChanse = Random.Range(0.0f, 1);
         if (stayChanse < StayChance) return 0;
@@ -87,7 +87,7 @@ public class BearController : BaseController
     /// <param name="start"></param> Начальная координата
     /// <param name="end"></param> Конечная координата
     /// <returns></returns> Вероятность
-    private float getChanceDirection(float start, float end)
+    protected float getChanceDirection(float start, float end)
     {
         var len = Mathf.Abs(end - start);
         if(len < Radius * DeltaChance) // Если отошли не далеко
@@ -98,12 +98,12 @@ public class BearController : BaseController
         return end > start ? chance : -chance;
     }
 
-    private float getDistance(Vector2 pos)
+    protected float getDistance(Vector2 pos)
     {
         return Vector2.Distance(pos, transform.position);
     }
 
-    private int calcDir(float v)
+    protected int calcDir(float v)
     {
         if (v < 0.5f && v > -0.5f) return 0;
         return v > 0 ? 1 : -1;
