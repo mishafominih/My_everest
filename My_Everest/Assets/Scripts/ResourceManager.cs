@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Resource
 {
-    Log, Stone, Gold
+    Log, Stone, Gold, Meet, Skin
 }
 
 public static class ResourceManager

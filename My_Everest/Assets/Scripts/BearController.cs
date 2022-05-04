@@ -11,6 +11,8 @@ public class BearController : BaseController
     public float PlayerDistance = 5;
     public float AttackDistace = 1.1f;
 
+    public int MaxCountDrop;
+
     protected Vector2 startPoint;
     protected float timer = 0;
     protected Vector2 MoveDirection;

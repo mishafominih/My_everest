@@ -125,6 +125,10 @@ MonoBehaviour:
   TimeSolution: 1.5
   PlayerDistance: 3
   AttackDistace: 0
+  MaxCountDrop: 3
+  Drops:
+  - {fileID: 1817995982032724128, guid: a046b1e6160703b48a8655c26f2af0ff, type: 3}
+  - {fileID: 1856101763030890558, guid: 71d1bc80a45281b42ae7d6f3eff8d9dc, type: 3}
 --- !u!61 &4308434923006236668
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -138,7 +142,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.010507807, y: 0.007546462}
+  m_Offset: {x: -0.040787816, y: -0.07438803}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -149,7 +153,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.45492223, y: 0.49523395}
+  m_Size: {x: 0.372988, y: 0.4667349}
   m_EdgeRadius: 0
 --- !u!114 &4308434923006236666
 MonoBehaviour:

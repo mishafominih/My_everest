@@ -10,6 +10,8 @@ public class Energy : MonoBehaviour
     public float Capacity = 100;
     public float DeltaEnergy = 0.001f;
 
+    public List<GameObject> Drops;
+
     protected float value;
     protected Text text;
 
@@ -43,5 +45,16 @@ public class Energy : MonoBehaviour
     public virtual void Death()
     {
         Destroy(gameObject);
+        if(!(Drops is null) && Drops.Count != 0)
+        {
+            foreach(var drop in Drops)
+            {
+                Instantiate(
+                    drop, 
+                    transform.position + new Vector3(Random.Range(-1, 1f), Random.Range(-1, 1f)),
+                    new Quaternion()
+                );
+            }
+        }
     }
 }
