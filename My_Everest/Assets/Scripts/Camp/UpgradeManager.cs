@@ -9,17 +9,15 @@ public class UpgradeManager : MonoBehaviour
     public Text UpgradeCost;
 
     private int currentUpgrade;
-    private UpgradeInfo info;
     void Start()
     {
-        info = new UpgradeInfo();
         currentUpgrade = 0;
         SetUpgrade();
     }
 
     public void Next()
     {
-        currentUpgrade = Mathf.Min(info.Upgrades.Count - 1, currentUpgrade + 1);
+        currentUpgrade = Mathf.Min(UpgradeInfo.Upgrades.Count - 1, currentUpgrade + 1);
         SetUpgrade();
     }
 
@@ -29,9 +27,30 @@ public class UpgradeManager : MonoBehaviour
         SetUpgrade();
     }
 
+    public void Upgrade()
+    {
+        var upg = UpgradeInfo.Upgrades[currentUpgrade];
+        var inventory = ResourceManager.GetInventory();
+        var cost = upg.GetCost();
+        foreach(var res in cost.Keys)
+        {
+            if (inventory[res] < cost[res])
+                return;
+        }
+
+        foreach (var res in cost.Keys)
+        {
+            ResourceManager.SaveResource(res, inventory[res] - cost[res]);
+        }
+        upg.SetUpgrate();
+        upg.Lavel++;
+        SetUpgrade();
+        UpgradeInfo.Save();
+    }
+
     private void SetUpgrade()
     {
-        var upg = info.Upgrades[currentUpgrade];
+        var upg = UpgradeInfo.Upgrades[currentUpgrade];
         UpgradeInfoText.text = $"{upg.Name} \n{upg.Description}";
         UpgradeCost.text = ToStr(upg.GetCost());
     }

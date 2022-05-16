@@ -61,6 +61,13 @@ public class Beepka : MonoBehaviour
         while (_timeToMine > 0)
         {
             _timeToMine -= Time.deltaTime;
+            PlayerEnergy energy = GameObject.FindObjectOfType<PlayerEnergy>();
+            if(resourcePrefab.name == Resource.Stone.ToString())
+                energy.ChangeEnergy(UpgradeInfo.StoneLavel);
+            if (resourcePrefab.name == Resource.Gold.ToString())
+                energy.ChangeEnergy(UpgradeInfo.GoldLavel);
+            else
+                energy.ChangeEnergy(0.1f);
             yield return null;
         }
         SpawnResources();

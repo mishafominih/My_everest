@@ -126,9 +126,6 @@ MonoBehaviour:
   PlayerDistance: 5
   AttackDistace: 1.5
   MaxCountDrop: 3
-  Drops:
-  - {fileID: 1817995982032724128, guid: a046b1e6160703b48a8655c26f2af0ff, type: 3}
-  - {fileID: 1856101763030890558, guid: 71d1bc80a45281b42ae7d6f3eff8d9dc, type: 3}
 --- !u!61 &417478054
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -198,3 +195,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Capacity: 100
   DeltaEnergy: 1
+  Drops:
+  - {fileID: 1817995982032724128, guid: a046b1e6160703b48a8655c26f2af0ff, type: 3}
+  - {fileID: 1817995982032724128, guid: a046b1e6160703b48a8655c26f2af0ff, type: 3}
+  - {fileID: 1817995982032724128, guid: a046b1e6160703b48a8655c26f2af0ff, type: 3}
+  - {fileID: 1817995982032724128, guid: a046b1e6160703b48a8655c26f2af0ff, type: 3}
+  - {fileID: 1856101763030890558, guid: 71d1bc80a45281b42ae7d6f3eff8d9dc, type: 3}
+  - {fileID: 1856101763030890558, guid: 71d1bc80a45281b42ae7d6f3eff8d9dc, type: 3}

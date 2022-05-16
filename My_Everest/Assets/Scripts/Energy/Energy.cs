@@ -17,16 +17,7 @@ public class Energy : MonoBehaviour
 
     private void Start()
     {
-        Capacity = PlayerPrefs.GetFloat("Energy", Capacity);
         value = Capacity;
-        text = transform
-            .GetComponentsInChildren<Text>()
-            .Where(x => x.name == "Energy")
-            .FirstOrDefault();
-        if (text != null)
-        {
-            text.text = $"Energy: {Mathf.Round(value)}%";
-        }
     }
 
     public virtual void ChangeEnergy(float delta = 1)

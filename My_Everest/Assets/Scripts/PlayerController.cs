@@ -15,7 +15,7 @@ public class PlayerController : BaseController
         var vertical = Joystick.Vertical;
         if(horizontal != 0 || vertical != 0)
         {
-            GetComponent<Energy>().ChangeEnergy();
+            GetComponent<Energy>().ChangeEnergy(UpgradeInfo.WalkLostEnergy);
         }
         Move(horizontal, vertical);
     }

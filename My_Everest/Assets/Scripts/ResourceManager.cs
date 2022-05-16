@@ -12,7 +12,7 @@ public static class ResourceManager
     public static Dictionary<Resource, int> GetInventory()
     {
         var inventory = new Dictionary<Resource, int>();
-        var resources = new List<Resource> { Resource.Log, Resource.Stone, Resource.Gold };
+        var resources = new List<Resource> { Resource.Log, Resource.Stone, Resource.Gold, Resource.Meet, Resource.Skin };
         foreach(var res in resources)
         {
             var count = GetResource(res);

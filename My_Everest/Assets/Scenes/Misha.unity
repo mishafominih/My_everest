@@ -12856,34 +12856,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 417478049, guid: 06d5d62e826bc3244b03066b189c085d, type: 3}
-      propertyPath: Drops.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 417478049, guid: 06d5d62e826bc3244b03066b189c085d, type: 3}
-      propertyPath: Drops.Array.data[0]
-      value: 
-      objectReference: {fileID: 1817995982032724128, guid: a046b1e6160703b48a8655c26f2af0ff, type: 3}
-    - target: {fileID: 417478049, guid: 06d5d62e826bc3244b03066b189c085d, type: 3}
-      propertyPath: Drops.Array.data[1]
-      value: 
-      objectReference: {fileID: 1817995982032724128, guid: a046b1e6160703b48a8655c26f2af0ff, type: 3}
-    - target: {fileID: 417478049, guid: 06d5d62e826bc3244b03066b189c085d, type: 3}
-      propertyPath: Drops.Array.data[2]
-      value: 
-      objectReference: {fileID: 1817995982032724128, guid: a046b1e6160703b48a8655c26f2af0ff, type: 3}
-    - target: {fileID: 417478049, guid: 06d5d62e826bc3244b03066b189c085d, type: 3}
-      propertyPath: Drops.Array.data[3]
-      value: 
-      objectReference: {fileID: 1817995982032724128, guid: a046b1e6160703b48a8655c26f2af0ff, type: 3}
-    - target: {fileID: 417478049, guid: 06d5d62e826bc3244b03066b189c085d, type: 3}
-      propertyPath: Drops.Array.data[4]
-      value: 
-      objectReference: {fileID: 1856101763030890558, guid: 71d1bc80a45281b42ae7d6f3eff8d9dc, type: 3}
-    - target: {fileID: 417478049, guid: 06d5d62e826bc3244b03066b189c085d, type: 3}
-      propertyPath: Drops.Array.data[5]
-      value: 
-      objectReference: {fileID: 1856101763030890558, guid: 71d1bc80a45281b42ae7d6f3eff8d9dc, type: 3}
     - target: {fileID: 268839267095106182, guid: 06d5d62e826bc3244b03066b189c085d, type: 3}
       propertyPath: m_Name
       value: Bear
@@ -13046,21 +13018,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Deer
       objectReference: {fileID: 0}
-    - target: {fileID: 4308434923006236667, guid: b1794da133bfdbc4094d088eaac21434, type: 3}
-      propertyPath: Drops.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4308434923006236667, guid: b1794da133bfdbc4094d088eaac21434, type: 3}
-      propertyPath: Drops.Array.data[0]
-      value: 
-      objectReference: {fileID: 1856101763030890558, guid: 71d1bc80a45281b42ae7d6f3eff8d9dc, type: 3}
-    - target: {fileID: 4308434923006236667, guid: b1794da133bfdbc4094d088eaac21434, type: 3}
-      propertyPath: Drops.Array.data[1]
-      value: 
-      objectReference: {fileID: 1817995982032724128, guid: a046b1e6160703b48a8655c26f2af0ff, type: 3}
-    - target: {fileID: 4308434923006236667, guid: b1794da133bfdbc4094d088eaac21434, type: 3}
-      propertyPath: Drops.Array.data[2]
-      value: 
-      objectReference: {fileID: 1817995982032724128, guid: a046b1e6160703b48a8655c26f2af0ff, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1794da133bfdbc4094d088eaac21434, type: 3}

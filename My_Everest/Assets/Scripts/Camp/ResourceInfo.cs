@@ -20,7 +20,7 @@ public class ResourceInfo : MonoBehaviour
 
     public void SetResource()
     {
-        var result = "Ресурсы: ";
+        var result = "Ресурсы: \n";
         var all = ResourceManager.GetInventory();
         foreach(var res in all.Keys)
         {
