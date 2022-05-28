@@ -11,7 +11,7 @@ public class MapSettings
     public int centreY;
     
 
-    private Dictionary<GameObject, int> objectsPrafabs;
+    private Dictionary<TilesEnum, float> objectsPrafabs;
     public List<MapSettings> MapSettingsList;
     public TilesEnum[,] map;
 
@@ -21,7 +21,7 @@ public class MapSettings
     public int endX;
     public int endY;
 
-    public MapSettings(int radiusX, int radiusY, int centreX, int centreY,  Dictionary<GameObject, int> op,
+    public MapSettings(int radiusX, int radiusY, int centreX, int centreY,  Dictionary<TilesEnum, float> op,
         TilesEnum[,] map,List<MapSettings> ms, bool isFirst=false)
     {
         this.radiusX = radiusX;
@@ -47,9 +47,19 @@ public class MapSettings
             for (int y =startY; y < endY; y++)
             {
                 map[x, y] = TilesEnum.Ground;
-                if(!isFirst)
-                    if (x == randX || y == randY)
-                        continue;
+                if (isFirst)
+                {
+                    if (x == startX)
+                        map[x,y] = TilesEnum.BorderL;
+                    if (x == endX - 1)
+                        map[x, y] = TilesEnum.BorderR;
+                    if (y == startY)
+                        map[x, y] = TilesEnum.BorderB;
+                    if (y == endY - 1)
+                        map[x, y] = TilesEnum.BorderT;
+                    continue;
+
+                }
                 if (x == startX)
                     map[x,y] = TilesEnum.BorderL;
                 if (x == endX - 1)
@@ -58,6 +68,20 @@ public class MapSettings
                     map[x, y] = TilesEnum.BorderB;
                 if (y == endY - 1)
                     map[x, y] = TilesEnum.BorderT;
+                if (x == randX || y == randY)
+                    continue;
+
+                if (objectsPrafabs !=null)
+                {
+                    foreach (var item in objectsPrafabs)
+                    {
+                        if (Random.Range(0, 100) < item.Value)
+                        {
+                            map[x, y] = item.Key;
+                        }
+                            
+                    }
+                }
             }
         }
     }

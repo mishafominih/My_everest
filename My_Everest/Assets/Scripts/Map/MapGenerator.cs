@@ -16,7 +16,8 @@ public enum TilesEnum
     Ground,
     Tree,
     Stone,
-    Gold
+    Gold,
+    Animal
         
 }
 public class MapGenerator : MonoBehaviour
@@ -40,21 +41,30 @@ public class MapGenerator : MonoBehaviour
     
     [Header("Префабы деревья и шанс их спавна")]
     [SerializeField] private List<GameObject> treesList;
-    [SerializeField] private int chanceToSpawnTree;
+    [SerializeField] private float chanceToSpawnTree;
     
     [Header("Префабы камня и шанс их спавна")]
     [SerializeField] private List<GameObject> stonesList;
-    [SerializeField] private int chanceToSpawnStone;
+    [SerializeField] private float chanceToSpawnStone;
     
     [Header("Префабы камня и шанс их спавна")]
     [SerializeField] private List<GameObject> goldList;
-    [SerializeField] private int chanceToSpawnGold;
+    [SerializeField] private float chanceToSpawnGold;
+    
+    [Header("Префабы животных и шанс их спавна")]
+    [SerializeField] private List<GameObject> animalList;
+    [SerializeField] private float chanceToSpawnAnimal;
 
     [Header("Уровень вложности")] 
     [SerializeField]  private int levelOfRec;
-   [ SerializeField] private int levelOfNonRec;
-   [ SerializeField] private float chanseOfNonRec;
+    [SerializeField] private int levelOfNonRec;
+    [SerializeField] private float chanseOfNonRec;
     
+    private Dictionary<TilesEnum, float> firstLevelObjects;
+    private Dictionary<TilesEnum, float> secondLevelObjects;
+    private Dictionary<TilesEnum, float> thirdLevelObjects;
+    private Dictionary<TilesEnum, float> fourthLevelObjects;
+    private Dictionary<TilesEnum, float> fifthLevelObjects;
     
     private TilesEnum[,] map;
     private List<MapSettings> mapSettings = new List<MapSettings>();
@@ -93,7 +103,29 @@ public class MapGenerator : MonoBehaviour
             var maxHeight = Mathf.Min(y - ms.startY, ms.endY - y);
             maxWidth -= Random.Range(2, maxWidth / (currentLevel + 1));
             maxHeight -= Random.Range(2, maxHeight / (currentLevel + 1));
-            var newMs = new MapSettings(maxWidth, maxHeight, x, y, null, map, null);
+            Dictionary<TilesEnum, float> newOP ;
+            switch (currentLevel)
+            {
+                case 1:
+                    newOP = firstLevelObjects;
+                    break;
+                case 2:
+                    newOP = fourthLevelObjects;
+                    break;
+                case 3:
+                    newOP = thirdLevelObjects;
+                    break;
+                case 4:
+                    newOP = fourthLevelObjects;
+                    break;
+                case 5:
+                    newOP = fifthLevelObjects;
+                    break;
+                default:
+                    newOP = null;
+                    break;
+            }
+            var newMs = new MapSettings(maxWidth, maxHeight, x, y, newOP, map, null);
             mapSettings.Add(newMs);
             ms.MapSettingsList.Add(newMs);
             GenerateMapSettings(currentLevel+1, newMs, i==msCount - 1);
@@ -101,8 +133,34 @@ public class MapGenerator : MonoBehaviour
     }
     private void Start()
     {
+        firstLevelObjects = new Dictionary<TilesEnum, float>()
+        {
+            { TilesEnum.Tree, chanceToSpawnTree  },
+            { TilesEnum.Animal, chanceToSpawnAnimal }
+        };
+        secondLevelObjects = new Dictionary<TilesEnum, float>()
+        {
+            { TilesEnum.Stone, chanceToSpawnStone },
+            { TilesEnum.Animal, chanceToSpawnAnimal },
+            { TilesEnum.Tree, chanceToSpawnTree }
+        };
+        thirdLevelObjects = new Dictionary<TilesEnum, float>()
+        {
+            { TilesEnum.Stone, chanceToSpawnStone },
+            {TilesEnum.Gold, chanceToSpawnGold}
+        };
+        fourthLevelObjects = new Dictionary<TilesEnum, float>()
+        {
+            { TilesEnum.Stone, chanceToSpawnStone },
+        };
+        fifthLevelObjects = new Dictionary<TilesEnum, float>()
+        {
+            {TilesEnum.Gold, chanceToSpawnGold + 5}
+        };
+
+        
         map = new TilesEnum[width, height];
-        var ms = new MapSettings(width / 2, height / 2, width / 2, height / 2, null, map, null, isFirst:true);
+        var ms = new MapSettings(width / 2, height / 2, width / 2, height / 2, firstLevelObjects, map, null, isFirst:true);
         mapSettings.Add(ms);
         GenerateMapSettings(1, ms, true);
         DrawMap();
@@ -143,6 +201,10 @@ public class MapGenerator : MonoBehaviour
                     case  TilesEnum.Gold:
                         var gold = goldList[Random.Range(0, goldList.Count)];
                         Instantiate(gold,new Vector3(i,j,0),Quaternion.identity);
+                        break;
+                    case  TilesEnum.Animal:
+                        var animal = animalList[Random.Range(0, goldList.Count)];
+                        Instantiate(animal,new Vector3(i,j,0),Quaternion.identity);
                         break;
                 }
             }
