@@ -156,9 +156,12 @@ MonoBehaviour:
   firstTileMapLayer: {fileID: 1303349059}
   secondTileMapLayer: {fileID: 776555415}
   groundTile: {fileID: 11400000, guid: 4cca9476c57bcaa41b1f2f8535f66bb1, type: 2}
-  borderTile: {fileID: 11400000, guid: 391d9423c7949814397d343f7c4f19c5, type: 2}
-  width: 64
-  height: 138
+  borderTileL: {fileID: 11400000, guid: 6aefec79a3609544bab2ba9a3bfd517b, type: 2}
+  borderTileR: {fileID: 11400000, guid: c0605d53389ee574b9c51251f3f5d1f5, type: 2}
+  borderTileB: {fileID: 11400000, guid: 2f9d66c1784668b4f95eb455a35d2fb8, type: 2}
+  borderTileT: {fileID: 11400000, guid: 2f9d66c1784668b4f95eb455a35d2fb8, type: 2}
+  width: 120
+  height: 130
   camp: {fileID: 3134772951814009654, guid: f304cd133e06f7647ba012faea0b8f6f, type: 3}
   player: {fileID: 1929005153412910465, guid: 864827bb3e8826a478588ea3fee3f503, type: 3}
   treesList:
@@ -172,6 +175,9 @@ MonoBehaviour:
   goldList:
   - {fileID: 2571536404086039777, guid: b4480f78cfb3ff949b0d9e9f7de67229, type: 3}
   chanceToSpawnGold: 1
+  levelOfRec: 5
+  levelOfNonRec: 0
+  chanseOfNonRec: 0.5
 --- !u!156049354 &526716511
 Grid:
   m_ObjectHideFlags: 0

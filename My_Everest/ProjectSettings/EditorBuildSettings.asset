@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Danya.unity
     guid: 48c2474e50c68e74b9cbe6e83cc07a75
+  - enabled: 1
+    path: Assets/Scenes/TileMapTests.unity
+    guid: 73c0d4ad9d7a82e479c44a4dc491f1a4
   m_configObjects: {}
