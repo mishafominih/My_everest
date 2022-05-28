@@ -7,28 +7,108 @@ using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
-public enum TilesEnum
-{
-    BorderL,
-    BorderR,
-    BorderB,
-    BorderT,
-    Ground,
-    Tree,
-    Stone,
-    Gold
-        
-}
 public class MapGenerator : MonoBehaviour
 {
+    private class Map : IEnumerable
+    {
+        public  int Width { get; }
+        public   int Height { get; }
+
+        private TilesEnum[,] map;
+
+        public Map(int width, int height)
+        {
+            Width = width;
+            Height = height;
+
+            map = new TilesEnum[width, height];
+            GenerateMap();
+            GenerateSecondFloor();
+        }
+
+        public TilesEnum this[int x, int y]
+        {
+            get => map[x, y];
+            set => map[x, y] = value;
+        }
+        public void GenerateBeepke(TilesEnum tileEnum, int chanse)
+        {
+            for (int i = 1; i < Width-1; i++)
+            {
+                for (int j = 1; j < Height-1; j++)
+                {
+                    if (Random.Range(0,100) < chanse && map[i,j]== TilesEnum.Ground)
+                    {
+                        map[i, j] = tileEnum;
+                    }
+                }
+            }
+        }
+
+        private void GenerateSecondFloor()
+        {
+            var newHeight = Height /Random.Range(2,5);
+            var newWidth = Width / Random.Range(2,5);
+
+            var rh = Random.Range(newWidth+3, Width-1);
+            var lh = Random.Range(newHeight+3, Height-1);
+            
+            Debug.Log(newWidth + " " + lh);
+            for (int i = newWidth; i < rh; i++)
+            {
+                for (int j = newHeight; j < lh; j++)
+                {
+                    if (i==newWidth+1 && j ==newHeight)
+                    {
+                        continue;
+                    }
+                    if (i==newWidth || j ==newHeight || i ==rh-1|| j==lh-1)
+                    {
+                        Debug.Log("lol");
+                        map[i, j] = TilesEnum.Border;
+                    }
+                }
+            }
+
+        }
+        private void GenerateMap()
+        {
+            for (int i = 0; i < Width; i++)
+            {
+                for (int j = 0; j < Height; j++)
+                {
+                    if (i==0 || j ==0 || i ==Width-1|| j==Height-1)
+                    {
+                        map[i, j] = TilesEnum.Border;
+                    }
+                    else
+                    {
+                        
+                        map[i, j] = TilesEnum.Ground;
+                    }
+                }
+            }
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return map.GetEnumerator();
+        }
+    }
+    private enum TilesEnum
+    {
+        Border,
+        Ground,
+        Tree,
+        Stone,
+        Gold
+        
+    }
     [Header("Настройка тайлов и тайловой карты")]
     [SerializeField] private Tilemap firstTileMapLayer;
     [SerializeField] private Tilemap secondTileMapLayer; 
     [SerializeField] private TileBase groundTile;
-    [SerializeField] private TileBase borderTileL;
-    [SerializeField] private TileBase borderTileR;
-    [SerializeField] private TileBase borderTileB;
-    [SerializeField] private TileBase borderTileT;
+    [SerializeField] private TileBase borderTile;
     
     [Header("Размер карты")]
     [SerializeField] private int width;
@@ -49,15 +129,8 @@ public class MapGenerator : MonoBehaviour
     [Header("Префабы камня и шанс их спавна")]
     [SerializeField] private List<GameObject> goldList;
     [SerializeField] private int chanceToSpawnGold;
-
-    [Header("Уровень вложности")] 
-    [SerializeField]  private int levelOfRec;
-   [ SerializeField] private int levelOfNonRec;
-   [ SerializeField] private float chanseOfNonRec;
     
-    
-    private TilesEnum[,] map;
-    private List<MapSettings> mapSettings = new List<MapSettings>();
+    private Map map; 
     private void OnValidate()
     {
         if (chanceToSpawnTree < 0 || chanceToSpawnTree > 100)
@@ -68,40 +141,16 @@ public class MapGenerator : MonoBehaviour
         if (height < 10)
             height = 10;
     }
+    
+    
 
-
-    private void GenerateMapSettings(int currentLevel, MapSettings ms, bool isNonRec)
-    {
-        if (currentLevel>= levelOfRec)
-            return;
-        var msCount = isNonRec ? 1 : 0;
-        float chanseToSpawn = Random.Range(0, 1);
-        while (chanseToSpawn < chanseOfNonRec)
-        {
-            msCount++;
-        }
-
-        ms.MapSettingsList = new List<MapSettings>();
-        for (int i = 0; i < msCount; i++)
-        {
-            var tempX = ms.radiusX  / (levelOfRec - currentLevel);
-            var tempY = ms.radiusY / (levelOfRec - currentLevel);
-            var x = Random.Range(ms.startX + tempX, ms.endX-tempX);
-            var y = Random.Range(ms.startY+tempY, ms.endY - tempY);
-            var maxWidth = Mathf.Min(x - ms.startX, ms.endX - x)-1;
-            var maxHeight = Mathf.Min(y - ms.startY, ms.endY - y)-1;
-            var newMs = new MapSettings(maxWidth, maxHeight, x, y, null, map, null);
-            mapSettings.Add(newMs);
-            ms.MapSettingsList.Add(newMs);
-            GenerateMapSettings(currentLevel+1, newMs, i==0);
-        }
-    }
     private void Start()
     {
-        map = new TilesEnum[width, height];
-        var ms = new MapSettings(width / 2, height / 2, width, height, null, map, null);
-        mapSettings.Add(ms);
-        GenerateMapSettings(0, ms, true);
+        map = new Map(width, height);
+        map.GenerateBeepke(TilesEnum.Tree, chanceToSpawnTree);
+        map.GenerateBeepke(TilesEnum.Stone, chanceToSpawnStone);
+        map.GenerateBeepke(TilesEnum.Gold, chanceToSpawnGold);
+
         DrawMap();
         
         Instantiate(camp,new Vector3(3,3),Quaternion.identity);
@@ -110,24 +159,15 @@ public class MapGenerator : MonoBehaviour
 
     private void DrawMap()
     {
-        for (int i = 0; i < width; i++)
+        for (int i = 0; i < map.Width; i++)
         {
-            for (int j = 0; j < height; j++)
+            for (int j = 0; j < map.Height; j++)
             {
                 firstTileMapLayer.SetTile(new Vector3Int(i,j,0),groundTile);
                 switch (map[i,j])
                 {
-                    case TilesEnum.BorderL:
-                        secondTileMapLayer.SetTile(new Vector3Int(i,j,0),borderTileL);
-                        break;
-                    case TilesEnum.BorderR:
-                        secondTileMapLayer.SetTile(new Vector3Int(i,j,0),borderTileR);
-                        break;
-                    case TilesEnum.BorderB:
-                        secondTileMapLayer.SetTile(new Vector3Int(i,j,0),borderTileB);
-                        break;
-                    case TilesEnum.BorderT:
-                        secondTileMapLayer.SetTile(new Vector3Int(i,j,0),borderTileT);
+                    case TilesEnum.Border:
+                        secondTileMapLayer.SetTile(new Vector3Int(i,j,0),borderTile);
                         break;
                     case  TilesEnum.Tree:
                         var tree = treesList[Random.Range(0, treesList.Count)];

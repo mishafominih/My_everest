@@ -72,7 +72,6 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -497,23 +496,6 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      DecoratingTiles_12: 1920354412278761618
-      DecoratingTiles_2: 843778311554553186
-      DecoratingTiles_13: -5493927863974246500
-      DecoratingTiles_4: -4320939790756381493
-      DecoratingTiles_15: 5697854736183305620
-      DecoratingTiles_8: 8173518978904699635
-      DecoratingTiles_0: 5911072953534257528
-      DecoratingTiles_14: 587886352870626489
-      DecoratingTiles_7: -5046025094218572151
-      DecoratingTiles_6: -7200191118903577119
-      DecoratingTiles_9: -3785578209365154452
-      DecoratingTiles_11: -2574483275155836026
-      DecoratingTiles_1: -7949343046032725736
-      DecoratingTiles_5: -8764558368841253709
-      DecoratingTiles_3: 5800142745060784736
-      DecoratingTiles_10: 6980354438432568469
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
