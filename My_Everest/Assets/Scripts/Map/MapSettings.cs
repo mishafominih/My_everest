@@ -50,13 +50,36 @@ public class MapSettings
                 if (isFirst)
                 {
                     if (x == startX)
-                        map[x,y] = TilesEnum.BorderL;
+                    {
+                        map[x, y] = TilesEnum.BorderL;
+                        continue;
+                    }
                     if (x == endX - 1)
+                    {
                         map[x, y] = TilesEnum.BorderR;
+                        continue;
+                    }
                     if (y == startY)
+                    {
                         map[x, y] = TilesEnum.BorderB;
+                        continue;
+                    }
                     if (y == endY - 1)
+                    {
                         map[x, y] = TilesEnum.BorderT;
+                        continue;
+                    }
+                    if (objectsPrafabs !=null)
+                    {
+                        foreach (var item in objectsPrafabs)
+                        {
+                            if (Random.Range(0, 100) < item.Value)
+                            {
+                                map[x, y] = item.Key;
+                            }
+                            
+                        }
+                    }
                     continue;
 
                 }

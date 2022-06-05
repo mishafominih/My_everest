@@ -110,7 +110,7 @@ public class MapGenerator : MonoBehaviour
                     newOP = firstLevelObjects;
                     break;
                 case 2:
-                    newOP = fourthLevelObjects;
+                    newOP = secondLevelObjects;
                     break;
                 case 3:
                     newOP = thirdLevelObjects;
@@ -142,7 +142,8 @@ public class MapGenerator : MonoBehaviour
         {
             { TilesEnum.Stone, chanceToSpawnStone },
             { TilesEnum.Animal, chanceToSpawnAnimal },
-            { TilesEnum.Tree, chanceToSpawnTree }
+            { TilesEnum.Tree, chanceToSpawnTree },
+            {TilesEnum.Gold, chanceToSpawnGold}
         };
         thirdLevelObjects = new Dictionary<TilesEnum, float>()
         {
@@ -152,6 +153,7 @@ public class MapGenerator : MonoBehaviour
         fourthLevelObjects = new Dictionary<TilesEnum, float>()
         {
             { TilesEnum.Stone, chanceToSpawnStone },
+            {TilesEnum.Gold, chanceToSpawnGold}
         };
         fifthLevelObjects = new Dictionary<TilesEnum, float>()
         {

@@ -160,8 +160,8 @@ MonoBehaviour:
   borderTileR: {fileID: 11400000, guid: c0605d53389ee574b9c51251f3f5d1f5, type: 2}
   borderTileB: {fileID: 11400000, guid: 2f9d66c1784668b4f95eb455a35d2fb8, type: 2}
   borderTileT: {fileID: 11400000, guid: 2f9d66c1784668b4f95eb455a35d2fb8, type: 2}
-  width: 120
-  height: 130
+  width: 128
+  height: 64
   camp: {fileID: 3134772951814009654, guid: f304cd133e06f7647ba012faea0b8f6f, type: 3}
   player: {fileID: 1929005153412910465, guid: 864827bb3e8826a478588ea3fee3f503, type: 3}
   treesList:
