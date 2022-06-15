@@ -160,8 +160,8 @@ MonoBehaviour:
   borderTileR: {fileID: 11400000, guid: c0605d53389ee574b9c51251f3f5d1f5, type: 2}
   borderTileB: {fileID: 11400000, guid: 2f9d66c1784668b4f95eb455a35d2fb8, type: 2}
   borderTileT: {fileID: 11400000, guid: 2f9d66c1784668b4f95eb455a35d2fb8, type: 2}
-  width: 128
-  height: 64
+  width: 90
+  height: 50
   camp: {fileID: 3134772951814009654, guid: f304cd133e06f7647ba012faea0b8f6f, type: 3}
   player: {fileID: 1929005153412910465, guid: 864827bb3e8826a478588ea3fee3f503, type: 3}
   treesList:
@@ -176,8 +176,8 @@ MonoBehaviour:
   - {fileID: 2571536404086039777, guid: b4480f78cfb3ff949b0d9e9f7de67229, type: 3}
   chanceToSpawnGold: 1
   animalList:
-  - {fileID: 4067235759448387804, guid: b1794da133bfdbc4094d088eaac21434, type: 3}
   - {fileID: 268839267095106182, guid: 06d5d62e826bc3244b03066b189c085d, type: 3}
+  - {fileID: 4067235759448387804, guid: b1794da133bfdbc4094d088eaac21434, type: 3}
   chanceToSpawnAnimal: 0.3
   levelOfRec: 5
   levelOfNonRec: 0

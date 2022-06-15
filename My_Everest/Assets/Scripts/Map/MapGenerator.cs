@@ -136,7 +136,9 @@ public class MapGenerator : MonoBehaviour
         firstLevelObjects = new Dictionary<TilesEnum, float>()
         {
             { TilesEnum.Tree, chanceToSpawnTree  },
-            { TilesEnum.Animal, chanceToSpawnAnimal }
+            { TilesEnum.Animal, chanceToSpawnAnimal },
+            { TilesEnum.Stone, chanceToSpawnStone },
+            {TilesEnum.Gold, chanceToSpawnGold}
         };
         secondLevelObjects = new Dictionary<TilesEnum, float>()
         {
@@ -205,7 +207,7 @@ public class MapGenerator : MonoBehaviour
                         Instantiate(gold,new Vector3(i,j,0),Quaternion.identity);
                         break;
                     case  TilesEnum.Animal:
-                        var animal = animalList[Random.Range(0, goldList.Count)];
+                        var animal = animalList[Random.Range(0, goldList.Count+1)];
                         Instantiate(animal,new Vector3(i,j,0),Quaternion.identity);
                         break;
                 }

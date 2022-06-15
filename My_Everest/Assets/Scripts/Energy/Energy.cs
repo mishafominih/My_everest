@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -15,16 +16,32 @@ public class Energy : MonoBehaviour
     protected float value;
     protected Text text;
 
+    private Color normalColor;
+    private Color highlightedColor;
+
+    private Material material;
+
     private void Start()
     {
-        value = Capacity;
+        normalColor = gameObject.GetComponent<Renderer>().material.color;
+        highlightedColor = Color.red;
+        material = gameObject.GetComponent<Renderer>().material;
+        
+            value = Capacity;
+    }
+
+    public void GetNormalColor()
+    {
+        material.color = normalColor;
     }
 
     public virtual void ChangeEnergy(float delta = 1)
     {
+        material.color = highlightedColor;
         value -= delta * DeltaEnergy;
         value = Mathf.Min(value, Capacity);
         value = Mathf.Max(value, 0);
+        Debug.Log(value);
         if (value == 0)
             Death();
         if (text != null)

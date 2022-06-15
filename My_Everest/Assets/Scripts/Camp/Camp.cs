@@ -16,6 +16,10 @@ public class Camp : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+    public void Training()
+    {
+        SceneManager.LoadScene("Misha");
+    }
 
     public void Home()
     {
