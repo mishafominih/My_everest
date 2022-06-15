@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -18,7 +19,6 @@ public enum TilesEnum
     Stone,
     Gold,
     Animal
-        
 }
 public class MapGenerator : MonoBehaviour
 {
@@ -38,7 +38,8 @@ public class MapGenerator : MonoBehaviour
     [Header("Префаб игрока и лагеря")]
     [SerializeField] private GameObject camp;
     [SerializeField] private GameObject player;
-    
+    [SerializeField] private GameObject exit;
+
     [Header("Префабы деревья и шанс их спавна")]
     [SerializeField] private List<GameObject> treesList;
     [SerializeField] private float chanceToSpawnTree;
@@ -142,13 +143,13 @@ public class MapGenerator : MonoBehaviour
         {
             { TilesEnum.Stone, chanceToSpawnStone },
             { TilesEnum.Animal, chanceToSpawnAnimal },
-            { TilesEnum.Tree, chanceToSpawnTree },
-            {TilesEnum.Gold, chanceToSpawnGold}
+            { TilesEnum.Tree, chanceToSpawnTree }
         };
         thirdLevelObjects = new Dictionary<TilesEnum, float>()
         {
             { TilesEnum.Stone, chanceToSpawnStone },
-            {TilesEnum.Gold, chanceToSpawnGold}
+            {TilesEnum.Gold, chanceToSpawnGold},
+            { TilesEnum.Tree, chanceToSpawnTree }
         };
         fourthLevelObjects = new Dictionary<TilesEnum, float>()
         {
@@ -169,6 +170,9 @@ public class MapGenerator : MonoBehaviour
         
         Instantiate(camp,new Vector3(3,3),Quaternion.identity);
         Instantiate(player,new Vector3(2,2),Quaternion.identity);
+
+        var up = mapSettings.Last();
+        Instantiate(exit, new Vector3(up.centreX, up.centreY), Quaternion.identity);
     }
 
     private void DrawMap()
@@ -205,7 +209,7 @@ public class MapGenerator : MonoBehaviour
                         Instantiate(gold,new Vector3(i,j,0),Quaternion.identity);
                         break;
                     case  TilesEnum.Animal:
-                        var animal = animalList[Random.Range(0, goldList.Count)];
+                        var animal = animalList[Random.Range(0, animalList.Count)];
                         Instantiate(animal,new Vector3(i,j,0),Quaternion.identity);
                         break;
                 }

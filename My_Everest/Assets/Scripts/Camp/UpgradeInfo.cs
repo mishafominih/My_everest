@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class UpgradeInfo
 {
-    public static float Energy = 1.5f;
+    public static float Energy = 1.25f;
     public static float WalkLostEnergy = 1;
     public static float FightLostEnergy = 1;
     public static float StoneLavel = 1;

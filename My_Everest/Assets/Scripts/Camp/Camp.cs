@@ -14,21 +14,35 @@ public class Camp : MonoBehaviour
 
     public void Trip()
     {
-        SceneManager.LoadScene(1);
+        var lavel = PlayerPrefs.GetInt("PlayerLavel", 1);
+        SceneManager.LoadScene(lavel);
     }
 
     public void Home()
     {
         var inventory = GameObject.FindObjectsOfType<UIInventory>();
-        foreach(var inv in inventory)
-        {
-            ResourceManager.AddResources(inv.GetAllItems());
-        }
+        if ( !( inventory is null))
+            foreach(var inv in inventory)
+            {
+                ResourceManager.AddResources(inv.GetAllItems());
+            }
         SceneManager.LoadScene(0);
     }
 
-    public void Craft()
+    public void Finish()
     {
-        
+        var inventory = GameObject.FindObjectsOfType<UIInventory>();
+        foreach (var inv in inventory)
+        {
+            ResourceManager.AddResources(inv.GetAllItems());
+        }
+        var lavel = PlayerPrefs.GetInt("PlayerLavel", 1);
+        PlayerPrefs.SetInt("PlayerLavel", lavel + 1);
+        SceneManager.LoadScene(0);
+    }
+
+    public void Revert()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }

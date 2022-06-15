@@ -40,60 +40,37 @@ public class MapSettings
 
     public void GenerateFloor(bool isFirst)
     {
-        var randX = Random.Range(startX, endX);
-        var randY = Random.Range(startY, endY);
+        var randX = Random.Range(startX + 2, endX - 2);
+        var randY = Random.Range(startY + 2, endY - 2);
         for (int x = startX; x < endX; x++)
         {
             for (int y =startY; y < endY; y++)
             {
                 map[x, y] = TilesEnum.Ground;
-                if (isFirst)
-                {
-                    if (x == startX)
-                    {
-                        map[x, y] = TilesEnum.BorderL;
-                        continue;
-                    }
-                    if (x == endX - 1)
-                    {
-                        map[x, y] = TilesEnum.BorderR;
-                        continue;
-                    }
-                    if (y == startY)
-                    {
-                        map[x, y] = TilesEnum.BorderB;
-                        continue;
-                    }
-                    if (y == endY - 1)
-                    {
-                        map[x, y] = TilesEnum.BorderT;
-                        continue;
-                    }
-                    if (objectsPrafabs !=null)
-                    {
-                        foreach (var item in objectsPrafabs)
-                        {
-                            if (Random.Range(0, 100) < item.Value)
-                            {
-                                map[x, y] = item.Key;
-                            }
-                            
-                        }
-                    }
-                    continue;
-
-                }
                 if (x == startX)
-                    map[x,y] = TilesEnum.BorderL;
-                if (x == endX - 1)
-                    map[x, y] = TilesEnum.BorderR;
-                if (y == startY)
-                    map[x, y] = TilesEnum.BorderB;
-                if (y == endY - 1)
-                    map[x, y] = TilesEnum.BorderT;
-                if (x == randX || y == randY)
+                {
+                    if (y != randY || isFirst)
+                        map[x, y] = TilesEnum.BorderL;
                     continue;
-
+                }
+                if (x == endX - 1)
+                {
+                    if (y != randY || isFirst)
+                        map[x, y] = TilesEnum.BorderR;
+                    continue;
+                }
+                if (y == startY)
+                {
+                    if (x != randX || isFirst)
+                        map[x, y] = TilesEnum.BorderB;
+                    continue;
+                }
+                if (y == endY - 1)
+                {
+                    if (x != randX || isFirst)
+                        map[x, y] = TilesEnum.BorderT;
+                    continue;
+                }
                 if (objectsPrafabs !=null)
                 {
                     foreach (var item in objectsPrafabs)
