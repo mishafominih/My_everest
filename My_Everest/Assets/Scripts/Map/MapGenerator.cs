@@ -137,7 +137,9 @@ public class MapGenerator : MonoBehaviour
         firstLevelObjects = new Dictionary<TilesEnum, float>()
         {
             { TilesEnum.Tree, chanceToSpawnTree  },
-            { TilesEnum.Animal, chanceToSpawnAnimal }
+            { TilesEnum.Animal, chanceToSpawnAnimal },
+            { TilesEnum.Stone, chanceToSpawnStone },
+            {TilesEnum.Gold, chanceToSpawnGold}
         };
         secondLevelObjects = new Dictionary<TilesEnum, float>()
         {
