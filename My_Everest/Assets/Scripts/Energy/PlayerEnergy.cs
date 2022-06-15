@@ -25,6 +25,7 @@ public class PlayerEnergy : Energy
 
     public override void Death()
     {
+        PlayerPrefs.DeleteAll();
         base.Death();
         SceneManager.LoadScene(0);
     }
